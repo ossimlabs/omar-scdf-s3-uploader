@@ -54,7 +54,7 @@ class OmarScdfS3UploaderApplication
             final File fileToUpload = new File(parsedJson.filename)
 
             if(!fileToUpload.isDirectory()){
-                final String s3Key = fileToUpload.getParent() + fileToUpload.getName()
+                final String s3Key = "${fileToUpload.getParent().split('/').last()}/${fileToUpload.getName()}"
                 s3Client.putObject(s3Bucket, s3Key, fileToUpload)
             }
 
